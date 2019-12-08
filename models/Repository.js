@@ -5,7 +5,7 @@ function connect () {
     mongoose.connect(MONGO_URL, {
         useUnifiedTopology: true,
         useNewUrlParser: true})
-        .then(() => console.log("Conectamos ao mongoose!"))
+        .then(() => console.log(" Uhuuulll Conectamos ao mongoose!"))
         .catch(err => console.error("An error has occured", err));
 }
 module.exports = { connect }

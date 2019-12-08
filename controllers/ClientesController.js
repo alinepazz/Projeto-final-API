@@ -7,6 +7,8 @@ const jwt = require  ('jsonwebtoken')
 connect()
 
 
+//Rotas para clientes
+
 const add = (request, response) => {
     const novoCliente = new ClientesModel(request.body)
 
@@ -18,8 +20,25 @@ const add = (request, response) => {
     })
 }
 
+const getAll = (request, response) => {
+    ClientesModel.find((error, clientes) => {
+        if(error) {
+            return response.status(500).send(error)
+        }
+        return response.status(200).send(clientes)
+    })
+}
+
+const getById = (request, response) => {
+    const id = request.params.id
+
+    
+
+}
 
 
+
+//Rotas para Servicos
 
 const addServico = async (request, response) => {
     const clienteId = request.params.clienteId
@@ -38,8 +57,24 @@ const addServico = async (request, response) => {
     })
 }
 
+const getServicos = (request, response) => {
+    const clienteId = request.params.id
+    ClientesModel.findById(clienteId, (error, cliente) => {
+        if(error){
+            return response.status(500).send(error)
+        }
+        if(cliente){
+            return response.status(200).send(cliente.servicos)
+        }
+        return response.status(404).send("Cliente não encontrado.:(")
+    })
+}
+
+
 
 module.exports = {
     add,
-    addServico
+    getAll,
+    addServico,
+    getServicos
 }
