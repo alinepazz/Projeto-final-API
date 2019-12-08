@@ -32,7 +32,17 @@ const getAll = (request, response) => {
 const getById = (request, response) => {
     const id = request.params.id
 
-    
+    return ClientesModel.findById(id, (error, cliente) => {
+        if(error) {
+            return response.status(500).send(error)
+        }
+        if(cliente){
+            return response.status(200).send(cliente)
+        }
+        return response.status(404).send("Cliente não encontrado!:(")
+    })
+
+
 
 }
 
@@ -75,6 +85,7 @@ const getServicos = (request, response) => {
 module.exports = {
     add,
     getAll,
+    getById,
     addServico,
     getServicos
 }
