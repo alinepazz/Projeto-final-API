@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 
 
 router.post('', controller.add)
+router.post('/:clienteId/servicos', controller.addServico)
 
 
 

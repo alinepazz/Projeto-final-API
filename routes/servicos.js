@@ -4,7 +4,7 @@ const router = express.Router();
 const controller = require('../controllers/ServicosController')
 
 
-
+router.post('', controller.add)
 
 
 
