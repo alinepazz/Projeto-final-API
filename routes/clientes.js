@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken')
 
 
 
+router.post('', controller.add)
+
 
 
 

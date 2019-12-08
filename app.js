@@ -1,11 +1,14 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+
 const clientes = require('./routes/clientes')
 const PORT = 3000
 
 
 
-//app.use(bodyParser.json())
+app.use(bodyParser.json())
+
 app.use('/clientes', clientes)
 
 app.get('/', (request, response) => {

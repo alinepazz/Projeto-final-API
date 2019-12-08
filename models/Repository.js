@@ -2,16 +2,10 @@ const mongoose = require('mongoose');
 const MONGO_URL = 'mongodb://localhost:27017/servicosApi';
 
 function connect () {
-    mongoose.connect(MONGO_URL,
-        {useNewUrlParser: true},
-        function (error) {
-            if(error) {
-                console.error("Ocorreu um erro:", error)
-            }else{
-                console.log("Conectamos ao mongoDB.")
-            }
-        }
-        
-    );
+    mongoose.connect(MONGO_URL, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true})
+        .then(() => console.log("Conectamos ao mongoose!"))
+        .catch(err => console.error("An error has occured", err));
 }
 module.exports = { connect }
