@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/ClientesController')
-const jwt = require('jsonwebtoken')
 
+const controller = require('../controllers/ServicosController')
 
 
 
