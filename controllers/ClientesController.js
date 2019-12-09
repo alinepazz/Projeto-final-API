@@ -80,6 +80,16 @@ const getServicos = (request, response) => {
     })
 }
 
+const getServicoById = async (request, response) => {
+    const clienteId = request.params.clienteId
+    const servicoId = request.params.servicoId
+
+    const cliente = await ClientesModel.findById(clienteId)
+    const servico = cliente.servicos.find(servico => servico._id == servicoId)
+
+    return response.status(200).send(servico)
+}
+
 
 
 module.exports = {
@@ -87,5 +97,6 @@ module.exports = {
     getAll,
     getById,
     addServico,
-    getServicos
+    getServicos,
+    getServicoById
 }
