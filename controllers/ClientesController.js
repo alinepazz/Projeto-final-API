@@ -4,6 +4,7 @@ const { servicosModel } = require('../models/ServicosSchema')
 const bcrypt = require ('bcryptjs')
 const jwt = require  ('jsonwebtoken')
 
+
 connect()
 
 
@@ -44,6 +45,27 @@ const getById = (request, response) => {
 
 
 
+}
+
+const update = (request, response) => {
+const id = request.params.id
+const clienteUpdate = request.body
+const options = {new : true}
+
+ClientesModel.findByIdAndUpdate(
+    id,
+    clienteUpdate,
+    options,
+    (error, cliente) => {
+        if(error) {
+            return response(500).send(error)
+        }
+        if(cliente) {
+            return response.status(200).send(cliente)
+        }
+        return response.status(403).send("Cliente não encontrado!:(")
+    }
+)
 }
 
 
@@ -96,6 +118,7 @@ module.exports = {
     add,
     getAll,
     getById,
+    update,
     addServico,
     getServicos,
     getServicoById
