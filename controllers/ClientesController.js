@@ -112,6 +112,32 @@ const getServicoById = async (request, response) => {
     return response.status(200).send(servico)
 }
 
+const updateServico = (request, response) => {
+const clienteId = request.params.clienteId
+const servicoId = request.params.servicoId
+const options = {new: true}
+
+ClientesModel.findOneAndUpdate(
+    {_id: clienteId, 'servicos._id': servicoId},
+    {
+        $set: {
+            'servicos.$.nome':request.body.nome,
+            'servicos.$.produto_utilizado':request.body.produto_utilizado
+        }
+    },
+    options,
+    (error, cliente) => {
+        if (error) {
+            return response.status(500).send(error)
+        }
+        if (cliente) {
+            return response.status(200).send(cliente)
+        }
+        return response.status(404).send('Cliente não encontrado!:(')
+    }
+  )
+}
+
 
 
 module.exports = {
@@ -121,5 +147,6 @@ module.exports = {
     update,
     addServico,
     getServicos,
-    getServicoById
+    getServicoById,
+    updateServico
 }
