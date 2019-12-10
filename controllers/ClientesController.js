@@ -68,6 +68,20 @@ ClientesModel.findByIdAndUpdate(
 )
 }
 
+const remove = (request, response) => {
+    const id = request.params.id
+
+    ClientesModel.findByIdAndDelete(id, (error, cliente) => {
+        if (error) {
+            return response.status(500).send(error)
+        }
+        if (cliente) {
+            return response.status(200).send('Cliente removido com sucesso!')
+        }
+        return response.status(404).send('Cliente não encontrado!:(')
+    })
+}
+
 
 
 //Rotas para Servicos
@@ -145,6 +159,7 @@ module.exports = {
     getAll,
     getById,
     update,
+    remove,
     addServico,
     getServicos,
     getServicoById,
