@@ -9,6 +9,7 @@ const ClientesSchema = new Schema({
     data_nascimento: { type: Date, required: false },
     ultima_visita: { type: Date, require: false },
     servicos: [ServicosSchema],
+    senha: { type: String, required: false },
 })
 
 const clientesModel = mongoose.model('clientes', ClientesSchema);

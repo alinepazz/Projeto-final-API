@@ -11,6 +11,8 @@ connect()
 //Rotas para clientes
 
 const add = (request, response) => {
+    const senhaCriptografada = bcrypt.hashSync(request.body.senha)
+    request.body.senha = senhaCriptografada
     const novoCliente = new ClientesModel(request.body)
 
     novoCliente.save((error) => {
