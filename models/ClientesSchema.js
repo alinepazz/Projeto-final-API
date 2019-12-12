@@ -10,6 +10,7 @@ const ClientesSchema = new Schema({
     ultima_visita: { type: Date, require: false },
     servicos: [ServicosSchema],
     senha: { type: String, required: false },
+    grupo: { type: String }
 })
 
 const clientesModel = mongoose.model('clientes', ClientesSchema);

@@ -13,6 +13,7 @@ connect()
 const add = (request, response) => {
     const senhaCriptografada = bcrypt.hashSync(request.body.senha)
     request.body.senha = senhaCriptografada
+    request.body.grupo = 'cliente'
     const novoCliente = new ClientesModel(request.body)
 
     novoCliente.save((error) => {
@@ -22,6 +23,23 @@ const add = (request, response) => {
         return response.status(201).send(novoCliente)
     })
 }
+
+const addAdmin = (request, response) => {
+    const senhaCriptografada = bcrypt.hashSync(request.body.senha)
+    request.body.senha = senhaCriptografada
+    request.body.grupo = 'admin'
+    const novoCliente = new ClientesModel(request.body)
+
+    novoCliente.save((error) => {
+        if (error) {
+            return response.status(500).send(error)
+        }
+        return response.status(201).send(novoCliente)
+    })
+}
+
+
+
 
 const getAll = (request, response) => {
     ClientesModel.find((error, clientes) => {
@@ -157,6 +175,7 @@ ClientesModel.findOneAndUpdate(
 
 
 module.exports = {
+    addAdmin,
     add,
     getAll,
     getById,

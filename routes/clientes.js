@@ -4,7 +4,7 @@ const controller = require('../controllers/ClientesController')
 const jwt = require('jsonwebtoken')
 
 
-
+router.post('/admin', controller.addAdmin)
 router.post('', controller.add)
 router.get('', controller.getAll)
 router.get('/:id', controller.getById)
