@@ -7,7 +7,7 @@ const ClientesSchema = new Schema({
     email: { type: String, required: true },
     contato: { type: String, required: true },
     data_nascimento: { type: Date, required: false },
-    ultima_visita: { type: Date, require: false },
+    ultima_visita: { type: Date, require: false, default: Date.now},
     servicos: [ServicosSchema],
     senha: { type: String, required: false },
     grupo: { type: String }

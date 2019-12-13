@@ -14,6 +14,7 @@ router.post('/:clienteId/servicos', controller.addServico)
 router.get('/:id/servicos', controller.getServicos)
 router.get('/:clienteId/servicos/:servicoId', controller.getServicoById)
 router.patch('/:clienteId/servicos/:servicoId', controller.updateServico)
+router.post('/login', controller.login)
 
 
 

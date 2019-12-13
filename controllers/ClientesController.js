@@ -3,6 +3,7 @@ const ClientesModel = require('../models/ClientesSchema')
 const { servicosModel } = require('../models/ServicosSchema')
 const bcrypt = require ('bcryptjs')
 const jwt = require  ('jsonwebtoken')
+const SEGREDO = "MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAiJmzz+adglShSvmQ54idp2KSn+SEY/539IGYmlCLig01mFw53Pye3AznQyw69vba1VcDqKDtqePQriCu4vkPMwIDAQABAkAp1aDLEB629oI7OvlU33Mg+0BadZrSIPHN0Q7SW86QZYxJ3UFR4kBklqFmlHMWoKC6Hb6tI0mg6hwPo2rryt6ZAiEA5ZF+qQCifxymcgH5xsoKMgJmvdwmgcZzKzLGbqHAtu0CIQCYU/yBp8URnhJkTQxSSQOTPwqjqYfeLlBGdl9Bp7T6nwIhAKwag4ZXv3rkE7Rs3sC1Pyd2vWeg4A1ypWzBSBowkbWRAiBf2PDYUE1i8XiXHhfzqreSLieupVy1g6TFQXRcpn7s9wIgFo6ESHKPg7i3C2CTB40j9tMG3xOsrGeijHnx8e/9cfI="
 
 
 connect()
@@ -36,6 +37,27 @@ const addAdmin = (request, response) => {
         }
         return response.status(201).send(novoCliente)
     })
+}
+
+const login = async (request, response) => {
+const clienteEncontrado =  await ClientesModel.findOne({ email: request.body.email })
+
+if (clienteEncontrado ){
+    const senhaCorreta = bcrypt.compareSync(request.body.senha, clienteEncontrado.senha)
+
+    if (senhaCorreta) {
+        const token = jwt.sign(
+            {
+                grupo: clienteEncontrado.grupo
+            },
+            SEGREDO,
+            {expiresIn: 6000}
+        )
+        return response.status(200).send({token})
+    }
+    return response.status(401).send('Senha incorreta.')
+}
+return response.status(404).send('Administrador não encontrado!')
 }
 
 
@@ -175,6 +197,7 @@ ClientesModel.findOneAndUpdate(
 
 
 module.exports = {
+    login,
     addAdmin,
     add,
     getAll,
