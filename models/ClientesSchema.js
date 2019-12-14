@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { ServicosSchema } = require('./ServicosSchema')
+const { ProfissionalSchema } = require('./ProfissionalSchema')
 const Schema = mongoose.Schema;
 const ClientesSchema = new Schema({
     _id: { type: mongoose.Schema.Types.ObjectId, auto: true, required: true },
@@ -10,7 +11,8 @@ const ClientesSchema = new Schema({
     ultima_visita: { type: Date, require: false, default: Date.now},
     servicos: [ServicosSchema],
     senha: { type: String, required: false },
-    grupo: { type: String }
+    grupo: { type: String },
+    profissional: [ProfissionalSchema]
 })
 
 const clientesModel = mongoose.model('clientes', ClientesSchema);

@@ -48,7 +48,7 @@ if (clienteEncontrado ){
     if (senhaCorreta) {
         const token = jwt.sign(
             {
-                grupo: clienteEncontrado.grupo
+                grupo: clienteEncontrado.grupo 
             },
             SEGREDO,
             {expiresIn: 6000}
