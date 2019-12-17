@@ -1,4 +1,3 @@
-require('dotenv').load
 const { connect } = require('../models/Repository')
 const ClientesModel = require('../models/ClientesSchema')
 const { servicosModel } = require('../models/ServicosSchema')

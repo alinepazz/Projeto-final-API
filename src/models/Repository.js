@@ -1,11 +1,12 @@
 
 const mongoose = require('mongoose');
-const MONGO_URL = process.env.MONGO_URI
+const DB_URI=process.env.MONGODB_URI
+
 
 process.env.PORT
 
 function connect () {
-    mongoose.connect(MONGO_URL, {
+    mongoose.connect(DB_URI, {
         useFindAndModify: false,
         useUnifiedTopology: true,
         useNewUrlParser: true})
