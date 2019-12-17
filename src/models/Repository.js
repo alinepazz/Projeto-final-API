@@ -1,5 +1,6 @@
+require('dotenv').load
 const mongoose = require('mongoose');
-const MONGO_URL = 'mongodb://localhost:27017/servicosApi';
+const MONGO_URL = process.env.MONGO_URI
 
 function connect () {
     mongoose.connect(MONGO_URL, {
