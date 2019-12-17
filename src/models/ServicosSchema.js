@@ -5,6 +5,8 @@ const ServicosSchema = new Schema({
     nome: {type: String, required: true},
     produto_utilizado: {type: String, required: true},
     data: {type: Date, required: false},
+    valor: {type: Number, required: true},
+    profissional: {type: String, required: true},
 })
 
 const servicosModel = mongoose.model('servicos', ServicosSchema);
