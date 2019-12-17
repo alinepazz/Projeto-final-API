@@ -1,6 +1,8 @@
-require('dotenv').load
+
 const mongoose = require('mongoose');
 const MONGO_URL = process.env.MONGO_URI
+
+process.env.PORT
 
 function connect () {
     mongoose.connect(MONGO_URL, {
