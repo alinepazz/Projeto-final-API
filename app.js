@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 app.use('/clientes', clientes)
 
 app.get('/', (request, response) => {
-    response.send('Olá Mundo!')
+    response.send('Sistema de gerenciamento de clientes para micro empreendedores da Area da Estética Capilar!')
 })
 
 app.listen(port,function(){
