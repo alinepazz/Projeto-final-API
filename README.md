@@ -22,6 +22,6 @@ você encontra a instalação no MAC pela linha de comando;
 - no arquivo package.json inserir "index.js" no lugar de "server.js" na opção "main";
 - npm install dot-env versão 6.1.0 (mudar no package.json)
 - .gitignore com node_modules / .env 
-- criar server.js rodando o app.js na porta 5005;
+- criar server.js rodando o app.js na porta 3000;
 - criar o app.js com o express, exportando o app;
-- rode o servidor com o comando "node server.js" no terminal e em seguida acesse "localhost:5005/" no Postman
+- rode o servidor com o comando "node server.js" no terminal e em seguida acesse "localhost:3000/" no Postman
